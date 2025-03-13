@@ -1,0 +1,332 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg-primary: 15, 23, 41;
+    --color-bg-secondary: 26, 41, 66;
+    --color-text-primary: 255, 255, 255;
+    --color-text-secondary: 156, 163, 175;
+    --color-accent-primary: 59, 130, 246;
+    --color-accent-secondary: 30, 58, 138;
+    --color-border: 55, 65, 81;
+    --color-success: 34, 197, 94;
+    --color-warning: 245, 158, 11;
+    --color-error: 239, 68, 68;
+    --color-info: 59, 130, 246;
+    --color-icon-sun: 250, 204, 21;  /* 太陽アイコン用 */
+    --color-icon-moon: 96, 165, 250; /* 月アイコン用 */
+    --color-button-hover: 255, 255, 255, 0.1;
+
+    --transition-speed: 0.3s;
+    --header-height: 4rem;
+    --header-height-md: 5rem;
+    --button-height: 38px;
+    --button-height-mobile: 34px;
+  }
+
+  [data-theme="light"] {
+    --color-bg-primary: 249, 250, 251;
+    --color-bg-secondary: 243, 244, 246;
+    --color-text-primary: 17, 24, 39;
+    --color-text-secondary: 107, 114, 128;
+    --color-accent-primary: 37, 99, 235;
+    --color-accent-secondary: 219, 234, 254;
+    --color-border: 229, 231, 235;
+    --color-success: 22, 163, 74;
+    --color-warning: 217, 119, 6;
+    --color-error: 220, 38, 38;
+    --color-info: 37, 99, 235;
+    --color-icon-sun: 217, 119, 6;  /* 太陽アイコン用 - ライトモード時は暗め */
+    --color-icon-moon: 59, 130, 246; /* 月アイコン用 - ライトモード時 */
+    --color-button-hover: 0, 0, 0, 0.05;
+  }
+
+  /* アプリ全体に適用されるスタイル */
+  body {
+    @apply bg-[rgb(var(--color-bg-primary))] text-[rgb(var(--color-text-primary))];
+    transition: background-color var(--transition-speed) ease-in-out, color var(--transition-speed) ease-in-out;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  /* ヘッダー固定関連のスタイル */
+  header {
+    height: var(--header-height);
+  }
+  
+  @media (min-width: 768px) {
+    header {
+      height: var(--header-height-md);
+    }
+  }
+  
+  /* メインコンテンツ用のパディング */
+  main {
+    padding-top: calc(var(--header-height) + 1rem);
+  }
+  
+  @media (min-width: 768px) {
+    main {
+      padding-top: calc(var(--header-height-md) + 1rem);
+    }
+  }
+  
+  /* カード背景 */
+  .card-bg {
+    @apply bg-[rgb(var(--color-bg-secondary))];
+    transition: background-color var(--transition-speed) ease-in-out;
+  }
+  
+  /* テキストカラー */
+  .text-primary {
+    @apply text-[rgb(var(--color-text-primary))];
+  }
+  
+  .text-secondary {
+    @apply text-[rgb(var(--color-text-secondary))];
+  }
+  
+  /* ボーダー */
+  .border-theme {
+    @apply border-[rgb(var(--color-border))];
+  }
+  
+  /* ボタン */
+  .btn-primary {
+    @apply bg-[rgb(var(--color-accent-primary))] text-white;
+  }
+  
+  .btn-secondary {
+    @apply bg-[rgb(var(--color-accent-secondary))] text-[rgb(var(--color-text-primary))];
+  }
+
+  /* 統一ボタンサイズ */
+  .btn-unified {
+    height: var(--button-height) !important;
+    min-width: 120px !important;
+    padding: 0 1rem !important;
+    border-radius: 0.5rem !important;
+    font-size: 0.875rem !important;
+    font-weight: 600 !important;
+    font-family: 'Inter', sans-serif !important;
+    transition: all var(--transition-speed) ease-in-out !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.5rem !important;
+  }
+
+  .btn-unified-icon {
+    height: var(--button-height) !important;
+    width: var(--button-height) !important;
+    padding: 0.5rem !important;
+    border-radius: 0.5rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all var(--transition-speed) ease-in-out !important;
+  }
+  
+  @media (max-width: 768px) {
+    .btn-unified {
+      height: var(--button-height-mobile) !important;
+      min-width: 100px !important;
+      padding: 0 0.75rem !important;
+      font-size: 0.75rem !important;
+    }
+    
+    .btn-unified-icon {
+      height: var(--button-height-mobile) !important;
+      width: var(--button-height-mobile) !important;
+      padding: 0.375rem !important;
+    }
+  }
+
+  /* ウォレット接続ボタン修正 */
+  .wallet-adapter-button {
+    background-color: rgb(var(--color-accent-primary)) !important;
+    color: rgb(var(--color-bg-primary)) !important;
+    border-radius: 0.5rem !important;
+    transition: all var(--transition-speed) ease-in-out !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 600 !important;
+    padding: 0 1rem !important;
+    height: var(--button-height) !important;
+    font-size: 0.875rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.5rem !important;
+  }
+
+  .wallet-adapter-button:hover {
+    background-color: rgb(var(--color-accent-secondary)) !important;
+    color: rgb(var(--color-accent-primary)) !important;
+  }
+
+  .wallet-adapter-button .wallet-adapter-button-start-icon {
+    margin-right: 0.5rem !important;
+  }
+  
+  @media (max-width: 768px) {
+    .wallet-adapter-button {
+      font-size: 0.75rem !important;
+      padding: 0 0.75rem !important;
+      height: var(--button-height-mobile) !important;
+    }
+  }
+
+  /* MUIボタンオーバーライド */
+  .MuiButton-root.btn-unified {
+    text-transform: none !important;
+    border-color: rgba(var(--color-border), 1) !important;
+    color: rgba(var(--color-text-secondary), 1) !important;
+    height: var(--button-height) !important;
+  }
+
+  .MuiButton-root.btn-unified:hover {
+    border-color: rgba(var(--color-accent-primary), 1) !important;
+    background-color: rgba(var(--color-accent-secondary), 0.3) !important;
+    color: rgba(var(--color-accent-primary), 1) !important;
+  }
+
+  @media (max-width: 768px) {
+    .MuiButton-root.btn-unified {
+      height: var(--button-height-mobile) !important;
+    }
+  }
+}
+
+/* テーマ切り替えのアニメーション */
+.theme-transition {
+  transition: background-color var(--transition-speed) ease-in-out,
+              color var(--transition-speed) ease-in-out,
+              border-color var(--transition-speed) ease-in-out,
+              box-shadow var(--transition-speed) ease-in-out;
+}
+
+/* アニメーション */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.animate-pulse-slow {
+  animation: pulse 2s infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, 
+    rgba(var(--color-accent-primary), 0) 0%, 
+    rgba(var(--color-accent-primary), 0.1) 50%, 
+    rgba(var(--color-accent-primary), 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* ボタンホバーエフェクト */
+.btn-hover-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-hover-effect::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(var(--color-button-hover)) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.btn-hover-effect:hover::after {
+  transform: translateX(100%);
+}
+
+/* ラウンドアイコンボタンスタイル */
+.icon-btn-round {
+  width: var(--button-height);
+  height: var(--button-height);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-speed) ease-in-out;
+  background-color: rgba(var(--color-accent-secondary), 0.3);
+  color: rgb(var(--color-accent-primary));
+}
+
+.icon-btn-round:hover {
+  transform: scale(1.05);
+  background-color: rgba(var(--color-accent-primary), 0.2);
+}
+
+/* リセット不要なスタイル定義を削除・統合 */
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: rgb(var(--color-accent-primary));
+  text-decoration: inherit;
+}
+a:hover {
+  color: rgb(var(--color-accent-secondary));
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: rgba(var(--color-bg-secondary));
+  cursor: pointer;
+  transition: border-color var(--transition-speed);
+}
+button:hover {
+  border-color: rgb(var(--color-accent-primary));
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
